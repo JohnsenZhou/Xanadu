@@ -1,5 +1,5 @@
 module.exports = {
-  base: '/xanadu/',
+  base: '/Xanadu/',
   title: 'Xanadu',
   description: '📝The road of front-end offer',
   themeConfig: {
