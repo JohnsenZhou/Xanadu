@@ -12,6 +12,13 @@ module.exports = {
       { text: '重学前端', link: '/relearn/' },
       { text: '算法', link: '/algorithm/' },
       { text: '面试题', link: '/interview/' },
+      {
+        text: '源码解析',
+        items: [
+          { text: 'React', link: '/react/' },
+          { text: 'Vue', link: '/vue/' }
+        ]
+      },
       { text: 'Github', link: 'https://github.com/JohnsenZhou/Xanadu' },
     ],
     sidebar: {
@@ -27,6 +34,15 @@ module.exports = {
       '/interview/': [
         '',
       ],
+      '/react/': [
+        '',
+      ],
+      '/vue/': [
+        '',
+      ],
+    },
+    markdown: {
+      lineNumbers: true,
     },
     displayAllHeaders: true
   }
