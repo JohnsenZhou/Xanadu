@@ -42,21 +42,21 @@ module.exports = {
               title: 'CSS',
               collapsable: true,
               children: [
-                '/relearn/css/types'
+                // '/relearn/css/types'
               ]
             },
             {
               title: 'HTML',
               collapsable: true,
               children: [
-                '/relearn/html/types'
+                // '/relearn/html/types'
               ]
             },
             {
               title: '浏览器实现原理与API',
               collapsable: true,
               children: [
-                '/relearn/browser/types'
+                // '/relearn/browser/types'
               ]
             },
             {
