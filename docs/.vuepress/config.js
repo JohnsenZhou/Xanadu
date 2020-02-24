@@ -56,7 +56,7 @@ module.exports = {
               title: '浏览器实现原理与API',
               collapsable: true,
               children: [
-                // '/relearn/browser/types'
+                '/relearn/browser/how'
               ]
             },
             {
@@ -80,6 +80,7 @@ module.exports = {
             ['', '介绍'],
             {
               title: 'JavaScript',
+              path: '/interview/js/',
               collapsable: true,
               children: [
                 '/interview/js/debounce'
@@ -87,6 +88,7 @@ module.exports = {
             },
             {
               title: 'CSS',
+              path: '/interview/css/',
               collapsable: true,
               children: [
                 '/interview/css/bfc',
