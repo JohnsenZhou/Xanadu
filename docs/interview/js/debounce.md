@@ -2,10 +2,18 @@
 
 ## 防抖
 
-触发高频事件后n秒内函数执行一次，如果n秒内高频事件再次触发，则重新计算事件
+触发高频事件后n秒内函数执行一次，如果n秒内高频事件再次触发，则重新计算时间
 
 ``` js
-
+function debounce(func, delay) {
+  let timer
+  return function() {
+    if (timer) clearTimeout(timer)
+    timer = setTimeout(() => {
+      func.apply(this, arguments)
+    }, delay)
+  }
+}
 ```
 
 ## 节流
@@ -13,7 +21,17 @@
 高频事件触发，n秒内只执行一次，稀释执行频率
 
 ``` js
-sadfasdfa
+function throttle(func, delay) {
+  let timer = null
+  return function() {
+    if (!timer) {
+      timer = setTimeout(() => {
+        func.apply(this, arguments)
+        timer = null
+      }, delay)
+    }
+  }
+}
 ```
 
 ## 动态示例
