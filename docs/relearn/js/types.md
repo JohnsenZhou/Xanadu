@@ -1,1 +1,11 @@
-# JavaScript类型：关于类型，有哪些你不知道的细节？
+# 类型
+
+## 基本类型
+
+- string
+- number
+- null
+- boolean
+- object
+- underfined
+- symbol

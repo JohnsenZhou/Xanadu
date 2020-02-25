@@ -35,7 +35,8 @@ module.exports = {
               title: 'JavaScript',
               collapsable: true,
               children: [
-                '/relearn/js/types'
+                '/relearn/js/types',
+                '/relearn/js/object'
               ]
             },
             {
@@ -91,7 +92,9 @@ module.exports = {
               path: '/interview/js/',
               collapsable: true,
               children: [
-                '/interview/js/debounce'
+                '/interview/js/1',
+                '/interview/js/2',
+                '/interview/js/3'
               ]
             },
             {
@@ -99,8 +102,8 @@ module.exports = {
               path: '/interview/css/',
               collapsable: true,
               children: [
-                '/interview/css/bfc',
-                '/interview/css/center'
+                '/interview/css/1',
+                '/interview/css/2'
               ]
             }
           ]
@@ -116,6 +119,5 @@ module.exports = {
     markdown: {
       lineNumbers: true,
     },
-    displayAllHeaders: true
   }
 }
