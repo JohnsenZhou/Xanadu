@@ -1,5 +1,18 @@
 module.exports = {
-  plugins: ['@vuepress/nprogress', '@vuepress/back-to-top'],
+  plugins: [
+    '@vuepress/nprogress',
+    '@vuepress/back-to-top',
+    [
+      '@vuepress/last-updated',
+      {
+        transformer: (timestamp) => {
+          const moment = require('moment')
+          moment.locale('zh-CN')
+          return moment(timestamp).fromNow()
+        }
+      }
+    ]
+  ],
   base: '/Xanadu/',
   title: 'Xanadu',
   head: [
@@ -116,6 +129,12 @@ module.exports = {
         '',
       ],
     },
+    repo: 'JohnsenZhou/Xanadu',
+    docsDir: 'docs',
+    docsBranch: 'master',
+    editLinks: true,
+    editLinkText: '在 GitHub 上编辑此页',
+    lastUpdated: '上次更新',
     markdown: {
       lineNumbers: true,
     },

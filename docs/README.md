@@ -1,7 +1,7 @@
 ---
 home: true
 heroText: Xanadu
-tagline: 📝The road of front-end offer
+tagline: 📝
 actionText: 快速上手 →
 actionLink: /guide/
 features:
