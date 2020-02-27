@@ -134,7 +134,14 @@ module.exports = {
         }
       ],
       '/pattern/': [
-        '',
+        {
+          title: '设计模式',
+          collapsable: false,
+          children: [
+            ['', '介绍'],
+            '1',
+          ]
+        }
       ],
       '/react/': [
         '',
