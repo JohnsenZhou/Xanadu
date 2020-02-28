@@ -1,3 +1,4 @@
+const fs = require('fs')
 module.exports = {
   plugins: [
     '@vuepress/nprogress',
@@ -47,38 +48,27 @@ module.exports = {
             {
               title: 'JavaScript',
               collapsable: true,
-              children: [
-                '/relearn/js/types',
-                '/relearn/js/object'
-              ]
+              children: generatePath('/relearn/js')
             },
             {
               title: 'CSS',
               collapsable: true,
-              children: [
-                // '/relearn/css/types'
-              ]
+              children: generatePath('/relearn/css')
             },
             {
               title: 'HTML',
               collapsable: true,
-              children: [
-                // '/relearn/html/types'
-              ]
+              children: generatePath('/relearn/html')
             },
             {
               title: '浏览器实现原理与API',
               collapsable: true,
-              children: [
-                '/relearn/browser/how'
-              ]
+              children: generatePath('/relearn/browser')
             },
             {
               title: '前端综合应用',
               collapsable: true,
-              children: [
-                '/relearn/allin/performance'
-              ]
+              children: generatePath('/relearn/allin')
             },
           ]
         }
@@ -87,11 +77,7 @@ module.exports = {
         {
           title: '算法',
           collapsable: false,
-          children: [
-            ['', '介绍'],
-            'complexity-analysis',
-            'array-linked-list',
-          ]
+          children: generatePath('/algorithm')
         }
       ],
       '/interview/': [
@@ -104,31 +90,18 @@ module.exports = {
               title: 'JavaScript',
               path: '/interview/js/',
               collapsable: true,
-              children: [
-                '/interview/js/1',
-                '/interview/js/2',
-                '/interview/js/3',
-                '/interview/js/4',
-                '/interview/js/5',
-                '/interview/js/6'
-              ]
+              children: generatePath('/interview/js')
             },
             {
               title: 'CSS',
               path: '/interview/css/',
               collapsable: true,
-              children: [
-                '/interview/css/1',
-                '/interview/css/2'
-              ]
+              children: generatePath('/interview/css')
             },
             {
               title: '异步',
               collapsable: true,
-              children: [
-                '/interview/async/1',
-                '/interview/async/2',
-              ]
+              children: generatePath('/interview/async')
             }
           ]
         }
@@ -137,10 +110,7 @@ module.exports = {
         {
           title: '设计模式',
           collapsable: false,
-          children: [
-            ['', '介绍'],
-            '1',
-          ]
+          children: generatePath('/pattern')
         }
       ],
       '/react/': [
@@ -160,4 +130,18 @@ module.exports = {
       lineNumbers: true,
     },
   }
+}
+
+function generatePath(path) {
+  const targetPath = process.cwd() + '/docs' + path
+  const files = fs.readdirSync(targetPath).filter(item => item.includes('md'))
+  const result = []
+  files.forEach(item => {
+    if (item.includes('README')) {
+      result.unshift([`${path}/`, '介绍'])
+    } else {
+      result.push(`${path}/${item}`)
+    }
+  })
+  return result
 }
