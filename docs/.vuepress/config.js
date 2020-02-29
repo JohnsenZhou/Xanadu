@@ -31,7 +31,8 @@ module.exports = {
         text: '源码解析',
         items: [
           { text: 'React', link: '/react/' },
-          { text: 'Vue', link: '/vue/' }
+          { text: 'Vue', link: '/vue/' },
+          { text: 'Webpack', link: '/webpack/' },
         ]
       },
     ],
@@ -47,27 +48,22 @@ module.exports = {
             ['', '介绍'],
             {
               title: 'JavaScript',
-              collapsable: true,
               children: generatePath('/relearn/js')
             },
             {
               title: 'CSS',
-              collapsable: true,
               children: generatePath('/relearn/css')
             },
             {
               title: 'HTML',
-              collapsable: true,
               children: generatePath('/relearn/html')
             },
             {
               title: '浏览器实现原理与API',
-              collapsable: true,
               children: generatePath('/relearn/browser')
             },
             {
               title: '前端综合应用',
-              collapsable: true,
               children: generatePath('/relearn/allin')
             },
           ]
@@ -88,19 +84,32 @@ module.exports = {
             ['', '介绍'],
             {
               title: 'JavaScript',
-              collapsable: true,
               children: generatePath('/interview/js')
             },
             {
               title: 'CSS',
-              collapsable: true,
               children: generatePath('/interview/css')
             },
             {
               title: '异步',
-              collapsable: true,
               children: generatePath('/interview/async')
-            }
+            },
+            {
+              title: '网络',
+              children: generatePath('/interview/network')
+            },
+            {
+              title: '浏览器',
+              children: generatePath('/interview/browser')
+            },
+            {
+              title: '框架相关',
+              children: generatePath('/interview/frame')
+            },
+            {
+              title: '编程题',
+              children: generatePath('/interview/code')
+            },
           ]
         }
       ],
@@ -115,6 +124,9 @@ module.exports = {
         '',
       ],
       '/vue/': [
+        '',
+      ],
+      '/webpack/': [
         '',
       ],
     },
