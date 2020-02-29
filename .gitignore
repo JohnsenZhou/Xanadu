@@ -4,8 +4,7 @@
 /node_modules
 
 # production
-/build
-/dist
+/docs/.vuepress/dist
 
 # idea
 .idea

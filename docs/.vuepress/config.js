@@ -132,6 +132,7 @@ module.exports = {
 
 function generatePath(path) {
   const targetPath = process.cwd() + '/docs' + path
+  if (!fs.existsSync(targetPath)) return []
   const files = fs.readdirSync(targetPath).filter(item => item.includes('md'))
   const result = []
   files.forEach(item => {
