@@ -32,7 +32,7 @@ module.exports = {
         items: [
           { text: 'React', link: '/react/' },
           { text: 'Vue', link: '/vue/' },
-          { text: 'Webpack', link: '/webpack/' },
+          { text: 'webpack', link: '/webpack/' },
         ]
       },
     ],
@@ -124,11 +124,19 @@ module.exports = {
         '',
       ],
       '/vue/': [
-        '',
+        {
+          title: 'Vue 2.x 源码解析',
+          collapsable: false,
+          children: generatePath('/vue')
+        }
       ],
       '/webpack/': [
-        '',
-      ],
+        {
+          title: 'webpack 源码解析',
+          collapsable: false,
+          children: generatePath('/webpack')
+        }
+      ]
     },
     repo: 'JohnsenZhou/Xanadu',
     docsDir: 'docs',
