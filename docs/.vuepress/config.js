@@ -88,13 +88,11 @@ module.exports = {
             ['', '介绍'],
             {
               title: 'JavaScript',
-              path: '/interview/js/',
               collapsable: true,
               children: generatePath('/interview/js')
             },
             {
               title: 'CSS',
-              path: '/interview/css/',
               collapsable: true,
               children: generatePath('/interview/css')
             },
