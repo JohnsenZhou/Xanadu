@@ -154,13 +154,14 @@ function generatePath(path) {
   const targetPath = process.cwd() + '/docs' + path
   if (!fs.existsSync(targetPath)) return []
   const files = fs.readdirSync(targetPath).filter(item => item.includes('md'))
+  const hasReadme = files.some(item => item.includes('README'))
+  const sortList = files.map(item => item.split('.md')[0]).filter(item => Number(item).toString() !== 'NaN').sort((a,b) => (a-b))
   const result = []
-  files.forEach(item => {
-    if (item.includes('README')) {
-      result.unshift([`${path}/`, '介绍'])
-    } else {
-      result.push(`${path}/${item}`)
-    }
+  sortList.forEach(item => {
+    result.push(`${path}/${item}`)
   })
+  if (hasReadme) {
+    result.unshift([`${path}/`, '介绍'])
+  }
   return result
 }
