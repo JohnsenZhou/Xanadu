@@ -2,6 +2,7 @@ const fs = require('fs')
 module.exports = {
   plugins: [
     '@vuepress/nprogress',
+    '@vuepress/medium-zoom',
     '@vuepress/back-to-top',
     [
       '@vuepress/last-updated',
@@ -38,7 +39,13 @@ module.exports = {
     ],
     sidebar: {
       '/guide/': [
-        '',
+        {
+          title: '指南',
+          collapsable: false,
+          children: [
+            ['', '介绍'],
+          ]
+        }
       ],
       '/relearn/': [
         {
