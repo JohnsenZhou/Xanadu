@@ -1,9 +1,12 @@
-function d(func, delay) {
-  let timer
-  return function() {
-    if (timer) clearTimeout(timer)
-    timer = setTimeout(() => {
-      func.apply(this, arguments)
-    }, delay)
-  }
+const createLoginModal = function() {
+  const div = document.createElement('div')
+  div.innerHTML = '我是弹窗'
+  div.style.display = 'none'
+  document.body.appendChild(div)
+  return div
+}
+
+document.getElementById('loginBtn').onclick = () => {
+  const loginModal = createLoginModal()
+  loginModal.style.display = 'block'
 }
