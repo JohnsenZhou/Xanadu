@@ -1,12 +1,16 @@
-const createLoginModal = function() {
-  const div = document.createElement('div')
-  div.innerHTML = '我是弹窗'
-  div.style.display = 'none'
-  document.body.appendChild(div)
-  return div
-}
-
-document.getElementById('loginBtn').onclick = () => {
-  const loginModal = createLoginModal()
-  loginModal.style.display = 'block'
+Function.prototype.newCall = function (context, arr) {
+  context = context || window
+  context.fn = this
+  var result
+  if (!arr) {
+    return context.fn()
+  } else {
+    var args = []
+    for (var i = 1; i < arr.length; i++) {
+      args.push('arr[' + i + ']')
+    }
+    result = eval('context.fn(' + args + ')')
+  }
+  delete context.fn
+  return result
 }
