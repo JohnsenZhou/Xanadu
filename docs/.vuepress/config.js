@@ -21,7 +21,7 @@ module.exports = {
     ['link', { rel: 'icon', href: `/logo.png` }],
   ],
   description: '📝The road of front-end offer',
-  theme: 'vuepress-theme-xanadu',
+  // theme: 'vuepress-theme-xanadu',
   themeConfig: {
     nav: [
       { text: '指南', link: '/guide/' },

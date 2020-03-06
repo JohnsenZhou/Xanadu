@@ -8599,9 +8599,9 @@ vuepress-plugin-smooth-scroll@^0.0.3:
   dependencies:
     smoothscroll-polyfill "^0.4.3"
 
-vuepress-theme-xanadu@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.npmjs.org/vuepress-theme-xanadu/-/vuepress-theme-xanadu-0.1.0.tgz#39acdd1a9616f3a9f54c9ce449ad2053c72e56f6"
+vuepress-theme-xanadu@^0.1.4:
+  version "0.1.5"
+  resolved "https://registry.npm.taobao.org/vuepress-theme-xanadu/download/vuepress-theme-xanadu-0.1.5.tgz#094fbefdfa16a5ccec8ec7dc4aa059c26955a83f"
   dependencies:
     "@vuepress/theme-default" "^1.3.1"
 
