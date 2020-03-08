@@ -21,18 +21,30 @@ export default {
   height 100px
   margin 24px 24px 0
   .img
+    flex-shrink 0
     max-width  130px
     height 100px
     margin-right 16px
   .motto
     display flex
     flex-direction column
-    justify-content: space-between;
-    height: 90px;
+    justify-content space-between
+    height 90px
     .text
-      font-size 12px
+      font-size .75rem
       color #444
     .author
-      font-size 11px
+      font-size .75rem
       color #999
+@media (max-width: 719px) {
+  .ads .img {
+    width: 100px;
+    height: 77px;
+  }
+  .ads .motto {
+    .text, .author {
+      font-size .7rem
+    }
+  }
+}
 </style>
