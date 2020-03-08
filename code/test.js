@@ -1,18 +1,7 @@
-const mult = function() {
-  let result = 1
-  for (let i = 0; i < arguments.length; i++) {
-    result = result * arguments[i];
-  }
-  return result
+function objectFactory() {
+  const obj = {}
+  const Constructor = [].shift.apply(arguments)
+  obj.__proto__ = Constructor.prototype
+  Constructor.apply(obj, arguments)
+  return obj
 }
-
-const proxyMult = (function() {
-  const cache = {}
-  return function () {
-    const args = Array.prototype.join.call(arguments, ',')
-    if (args in cache) {
-      return cache[args]
-    }
-    return cache[args] = mult.apply(this, arguments)
-  }
-})()
