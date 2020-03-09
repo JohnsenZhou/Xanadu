@@ -1,175 +1,172 @@
-const fs = require('fs')
+const fs = require("fs");
 module.exports = {
   plugins: [
-    '@vuepress/nprogress',
-    '@vuepress/medium-zoom',
-    '@vuepress/back-to-top',
+    "@vuepress/nprogress",
+    "@vuepress/medium-zoom",
+    "@vuepress/back-to-top",
     [
-      '@vuepress/last-updated',
+      "@vuepress/last-updated",
       {
-        transformer: (timestamp) => {
-          const moment = require('moment')
-          moment.locale('zh-CN')
-          return moment(timestamp).fromNow()
+        transformer: timestamp => {
+          const moment = require("moment");
+          moment.locale("zh-CN");
+          return moment(timestamp).fromNow();
         }
       }
     ]
   ],
-  base: '/Xanadu/',
-  title: 'Xanadu',
-  head: [
-    ['link', { rel: 'icon', href: `/logo.png` }],
-  ],
-  description: '📝The road of front-end offer',
+  base: "/Xanadu/",
+  title: "Xanadu",
+  head: [["link", { rel: "icon", href: `/logo.png` }]],
+  description: "📝The road of front-end offer",
   // theme: 'vuepress-theme-xanadu',
   themeConfig: {
     nav: [
-      { text: '指南', link: '/guide/' },
-      { text: '重学前端', link: '/relearn/' },
-      { text: '算法', link: '/algorithm/' },
-      { text: '设计模式', link: '/pattern/' },
-      { text: '面试题', link: '/interview/' },
+      { text: "指南", link: "/guide/" },
+      { text: "重学前端", link: "/relearn/" },
+      { text: "算法", link: "/algorithm/" },
+      { text: "设计模式", link: "/pattern/" },
+      { text: "面试题", link: "/interview/" },
       {
-        text: '源码解析',
+        text: "源码解析",
         items: [
-          { text: 'React', link: '/react/' },
-          { text: 'Vue', link: '/vue/' },
-          { text: 'webpack', link: '/webpack/' },
+          { text: "React", link: "/react/" },
+          { text: "Vue", link: "/vue/" },
+          { text: "webpack", link: "/webpack/" }
         ]
-      },
+      }
     ],
     sidebar: {
-      '/guide/': [
+      "/guide/": [
         {
-          title: '指南',
+          title: "指南",
+          collapsable: false,
+          children: [["", "介绍"]]
+        }
+      ],
+      "/relearn/": [
+        {
+          title: "重学前端",
           collapsable: false,
           children: [
-            ['', '介绍'],
+            ["", "介绍"],
+            {
+              title: "JavaScript",
+              children: generatePath("/relearn/js")
+            },
+            {
+              title: "CSS",
+              children: generatePath("/relearn/css")
+            },
+            {
+              title: "HTML",
+              children: generatePath("/relearn/html")
+            },
+            {
+              title: "浏览器实现原理与API",
+              children: generatePath("/relearn/browser")
+            },
+            {
+              title: "前端综合应用",
+              children: generatePath("/relearn/allin")
+            }
           ]
         }
       ],
-      '/relearn/': [
+      "/algorithm/": [
         {
-          title: '重学前端',
+          title: "算法",
+          collapsable: false,
+          children: generatePath("/algorithm")
+        }
+      ],
+      "/interview/": [
+        {
+          title: "面试题",
           collapsable: false,
           children: [
-            ['', '介绍'],
+            ["", "介绍"],
             {
-              title: 'JavaScript',
-              children: generatePath('/relearn/js')
+              title: "JavaScript",
+              children: generatePath("/interview/js")
             },
             {
-              title: 'CSS',
-              children: generatePath('/relearn/css')
+              title: "CSS",
+              children: generatePath("/interview/css")
             },
             {
-              title: 'HTML',
-              children: generatePath('/relearn/html')
+              title: "异步",
+              children: generatePath("/interview/async")
             },
             {
-              title: '浏览器实现原理与API',
-              children: generatePath('/relearn/browser')
+              title: "网络",
+              children: generatePath("/interview/network")
             },
             {
-              title: '前端综合应用',
-              children: generatePath('/relearn/allin')
+              title: "浏览器",
+              children: generatePath("/interview/browser")
             },
+            {
+              title: "框架相关",
+              children: generatePath("/interview/frame")
+            },
+            {
+              title: "编程题",
+              children: generatePath("/interview/code")
+            }
           ]
         }
       ],
-      '/algorithm/': [
+      "/pattern/": [
         {
-          title: '算法',
+          title: "设计模式",
           collapsable: false,
-          children: generatePath('/algorithm')
+          children: generatePath("/pattern")
         }
       ],
-      '/interview/': [
+      "/react/": [""],
+      "/vue/": [
         {
-          title: '面试题',
+          title: "Vue 2.x 源码解析",
           collapsable: false,
-          children: [
-            ['', '介绍'],
-            {
-              title: 'JavaScript',
-              children: generatePath('/interview/js')
-            },
-            {
-              title: 'CSS',
-              children: generatePath('/interview/css')
-            },
-            {
-              title: '异步',
-              children: generatePath('/interview/async')
-            },
-            {
-              title: '网络',
-              children: generatePath('/interview/network')
-            },
-            {
-              title: '浏览器',
-              children: generatePath('/interview/browser')
-            },
-            {
-              title: '框架相关',
-              children: generatePath('/interview/frame')
-            },
-            {
-              title: '编程题',
-              children: generatePath('/interview/code')
-            },
-          ]
+          children: generatePath("/vue")
         }
       ],
-      '/pattern/': [
+      "/webpack/": [
         {
-          title: '设计模式',
+          title: "webpack 源码解析",
           collapsable: false,
-          children: generatePath('/pattern')
-        }
-      ],
-      '/react/': [
-        '',
-      ],
-      '/vue/': [
-        {
-          title: 'Vue 2.x 源码解析',
-          collapsable: false,
-          children: generatePath('/vue')
-        }
-      ],
-      '/webpack/': [
-        {
-          title: 'webpack 源码解析',
-          collapsable: false,
-          children: generatePath('/webpack')
+          children: generatePath("/webpack")
         }
       ]
     },
-    repo: 'JohnsenZhou/Xanadu',
-    docsDir: 'docs',
-    docsBranch: 'master',
+    repo: "JohnsenZhou/Xanadu",
+    docsDir: "docs",
+    docsBranch: "master",
     editLinks: true,
-    editLinkText: '在 GitHub 上编辑此页',
-    lastUpdated: '上次更新',
+    editLinkText: "在 GitHub 上编辑此页",
+    lastUpdated: "上次更新",
     markdown: {
-      lineNumbers: true,
-    },
+      lineNumbers: true
+    }
   }
-}
+};
 
 function generatePath(path) {
-  const targetPath = process.cwd() + '/docs' + path
-  if (!fs.existsSync(targetPath)) return []
-  const files = fs.readdirSync(targetPath).filter(item => item.includes('md'))
-  const hasReadme = files.some(item => item.includes('README'))
-  const sortList = files.map(item => item.split('.md')[0]).filter(item => Number(item).toString() !== 'NaN').sort((a,b) => (a-b))
-  const result = []
+  const targetPath = process.cwd() + "/docs" + path;
+  if (!fs.existsSync(targetPath)) return [];
+  const files = fs.readdirSync(targetPath).filter(item => item.includes("md"));
+  const hasReadme = files.some(item => item.includes("README"));
+  const sortList = files
+    .map(item => item.split(".md")[0])
+    .filter(item => Number(item).toString() !== "NaN")
+    .sort((a, b) => a - b);
+  const result = [];
   sortList.forEach(item => {
-    result.push(`${path}/${item}`)
-  })
+    result.push(`${path}/${item}`);
+  });
   if (hasReadme) {
-    result.unshift([`${path}/`, '介绍'])
+    result.unshift([`${path}/`, "介绍"]);
   }
-  return result
+  return result;
 }
