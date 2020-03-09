@@ -17,3 +17,8 @@
 - [代理模式](./3.md)
 - [迭代器模式](./4.md)
 - [发布-订阅模式](./5.md)
+
+## 参考
+
+- [《深入设计模式》](https://refactoringguru.cn/design-patterns)
+- 《JavaScript设计模式与开发实践》
