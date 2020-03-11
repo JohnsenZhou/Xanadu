@@ -12,7 +12,7 @@
 将不变的部分和变化的部分隔开是每个设计模式的核心。
 :::
 
-这里主要介绍`JavaScript`开发中常见的14中设计模式：
+这里主要介绍`JavaScript`开发中常见的 14 中设计模式：
 
 - [单例模式](./1.md)
 - [策略模式](./2.md)
@@ -23,4 +23,4 @@
 ## 参考
 
 - [《深入设计模式》](https://refactoringguru.cn/design-patterns)
-- 《JavaScript设计模式与开发实践》
+- 《JavaScript 设计模式与开发实践》
