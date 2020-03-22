@@ -1,65 +1,62 @@
-function noop() {
-  // 空方法，由子类重写
-}
-class Beverage {
-  boilWater() {
-    console.log("把水煮沸");
+class Upload {
+  constructor(type) {
+    this.uploadType = type;
   }
-  brew() {
-    // 冲泡：空方法，由子类重写
-  }
-  pourInCup() {
-    // 把饮料倒进杯子：空方法，由子类重写
-  }
-  addCondiments() {
-    // 加调料：空方法，由子类重写
-  }
-  init() {
-    this.boilWater();
-    this.brew();
-    this.pourInCup();
-    this.addCondiments();
+  delFile() {
+    this.dom.parentNode.removeChild(this.dom);
   }
 }
 
-class Coffee extends Beverage {
-  brew() {
-    console.log("用沸水冲泡咖啡");
-  }
-  pourInCup() {
-    console.log("把咖啡倒进杯子");
-  }
-  addCondiments() {
-    console.log("加糖和牛奶");
-  }
-}
+const uploadFactory = (function() {
+  const createdUploadObj = {};
+  return {
+    create(uploadType) {
+      if (createdUploadObj[uploadType]) {
+        return createdUploadObj[uploadType];
+      }
+      return (createdUploadObj[uploadType] = new Upload(uploadType));
+    }
+  };
+})();
 
-const coffee = new Coffee();
-coffee.init();
+const uploadManager = (function() {
+  const uploadDatabase = {};
+  return {
+    add: (id, uploadType, fileName) => {
+      const flyweightObj = UploadFactory.create(uploadType);
+      const dom = document.createElement("div");
+      dom.innerHTML =
+        "＜span>文件名称：" +
+        fileName +
+        "</span>" +
+        '＜button class="delFile">删除＜／button>';
+      dom.querySelector(".delFile").onclick = function() {
+        flyweightObj.delFile(id);
+      };
+      document.body.appendChild(dom);
+      uploadDatabase[id] = {
+        fileName,
+        dom
+      };
+      return flyweightObj;
+    }
+  };
+})();
 
-class Tea extends Beverage {
-  brew() {
-    console.log("用沸水浸泡茶叶");
+window.startUpload = (uploadType, files) => {
+  for (let i = 0; i < files.length; i++) {
+    const uploadObj = uploadManager.add(++id, uploadType, file.fileName);
   }
-  pourInCup() {
-    console.log("把茶水倒进杯子");
-  }
-  addCondiments() {
-    console.log("加柠檬");
-  }
-}
+};
 
-const tea = new Tea();
-tea.init();
+startUpload("iframe", [
+  { fileName: "1.txt" },
+  { fileName: "2.txt" },
+  { fileName: "3.txt" }
+]);
 
-class Beverage {
-  brew() {
-    throw new Error("必须重写brew方法");
-  }
-  pourInCup() {
-    throw new Error("必须重写pourInCup方法");
-  }
-  addCondiments() {
-    throw new Error("必须重写addCondiments方法");
-  }
-}
+startUpload("form", [
+  { fileName: "4.txt" },
+  { fileName: "5.txt" },
+  { fileName: "6.txt" }
+]);

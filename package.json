@@ -9,7 +9,7 @@
     "build": "vuepress build docs",
     "lerna": "./node_modules/lerna/cli.js",
     "lerna-publish": "./node_modules/lerna/cli.js publish --no-git-tag-version --no-push",
-    "prettier": "./node_modules/prettier/bin-prettier.js --write \"docs/**/*.{js,md}\""
+    "prettier": "./node_modules/prettier/bin-prettier.js --write \"docs/**/*.{js,md}\" \"code/*.{js,ts}\""
   },
   "husky": {
     "hooks": {
