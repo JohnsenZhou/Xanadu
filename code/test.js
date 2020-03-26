@@ -1,59 +1,32 @@
-const ORDER_TYPE_RESERVED_500 = 1; // 预付500元定金用户
-const ORDER_TYPE_RESERVED_200 = 2; // 预付200元定金用户
-const ORDER_TYPE_NORMAL = 3; // 普通购买用户
-const order500 = (orderType, payed, stock) => {
-  if (payed && orderType === ORDER_TYPE_RESERVED_500) {
-    console.log("500元定金预购，得到100优惠券");
-  } else {
-    // 未支付定金
-    return "nextSuccessor";
+class Plane {
+  constructor(name, time) {
+    this.name = name;
+    this.time = time;
+    this.state = "waiting";
+    this.otherPlanes = [];
   }
-};
-
-const order200 = (orderType, payed, stock) => {
-  if (payed && orderType === ORDER_TYPE_RESERVED_200) {
-    console.log("200元定金预购，得到50优惠券");
-  } else {
-    // 未支付定金
-    return "nextSuccessor";
+  addOtherPlane(plane) {
+    this.otherPlanes.push(plane);
+    return this;
   }
-};
-
-const orderNormal = (orderType, payed, stock) => {
-  if (stock > 0) {
-    console.log("普通购买，无优惠券");
-  } else {
-    console.log("手机库存不足");
+  landing() {
+    console.log(this.name + "正在降落");
+    this.state = "landing";
+    this.otherPlanes.forEach(item => item.waiting());
   }
-};
-
-class Chain {
-  constructor(fn) {
-    this.fn = fn;
-    this.nextSuccessor = null;
+  waiting() {
+    this.state = "waiting";
+    console.log(this.name + "等待降落");
   }
-  setNextSuccessor(successor) {
-    this.nextSuccessor = successor;
-  }
-  passRequest() {
-    const result = this.fn.apply(this, arguments);
-    if (result === "nextSuccessor") {
-      return (
-        this.nextSuccessor &&
-        this.nextSuccessor.passRequest.apply(this.nextSuccessor, arguments)
-      );
-    }
-    return result;
+  done() {
+    this.state = "done";
+    console.log(this.name + "降落成功，后面跟上");
   }
 }
-const chainOrder500 = new Chain(order500);
-const chainOrder200 = new Chain(order200);
-const chainOrderNormal = new Chain(orderNormal);
 
-chainOrder500.setNextSuccessor(chainOrder200);
-chainOrder200.setNextSuccessor(chainOrderNormal);
-
-chainOrder500.passRequest(1, true, 500);
-chainOrder500.passRequest(2, true, 500);
-chainOrder500.passRequest(3, true, 500);
-chainOrder500.passRequest(1, false, 0);
+const planeOne = new Plane("飞机一号", 1);
+const planeTwo = new Plane("飞机二号", 2);
+const planeThree = new Plane("飞机三号", 3);
+planeOne.addOtherPlane(planeTwo).addOtherPlane(planeThree);
+planeTwo.addOtherPlane(planeOne).addOtherPlane(planeThree);
+planeThree.addOtherPlane(planeOne).addOtherPlane(planeTwo);
