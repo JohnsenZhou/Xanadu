@@ -21,6 +21,7 @@ class Plane {
   done() {
     this.state = "done";
     console.log(this.name + "降落成功，后面跟上");
+    this.otherPlanes.forEach(item => item.state);
   }
 }
 
