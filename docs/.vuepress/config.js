@@ -19,7 +19,6 @@ module.exports = {
   title: "Xanadu",
   head: [["link", { rel: "icon", href: `/logo.png` }]],
   description: "📝The road of front-end offer",
-  // theme: 'vuepress-theme-xanadu',
   themeConfig: {
     nav: [
       { text: "指南", link: "/guide/" },
