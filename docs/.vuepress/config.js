@@ -27,7 +27,6 @@ module.exports = {
       { text: "算法", link: "/algorithm/" },
       { text: "设计模式", link: "/pattern/" },
       { text: "面试题", link: "/interview/" },
-      { text: "翻译计划", link: "/translate/" },
       {
         text: "源码解析",
         items: [
@@ -138,13 +137,6 @@ module.exports = {
           title: "webpack 源码解析",
           collapsable: false,
           children: generatePath("/webpack")
-        }
-      ],
-      "/translate/": [
-        {
-          title: "翻译计划",
-          collapsable: false,
-          children: generatePath("/translate")
         }
       ]
     },
