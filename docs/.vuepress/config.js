@@ -40,7 +40,7 @@ module.exports = {
         {
           title: "指南",
           collapsable: false,
-          children: [["", "介绍"]]
+          children: generatePath('/guide')
         }
       ],
       "/relearn/": [
