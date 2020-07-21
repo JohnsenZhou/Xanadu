@@ -1,21 +1,14 @@
-function isStraight(nums) {
-  let flag = true;
-  let set = new Set();
-  let min = 14;
-  let max = 0;
+function twoSum(nums = [], target) {
+  let result;
   for (let i = 0; i < nums.length; i++) {
-    if (nums[i] === 0) continue;
-    max = nums[i] > max ? nums[i] : max;
-    min = nums[i] < min ? nums[i] : min;
-    if (set.has(nums[i])) {
-      flag = false;
-      break;
+    if (result) break;
+    for (let j = i + 1; j < nums.length; j++) {
+      if (nums[i] + nums[j] === target) {
+        result = [i, j];
+        break;
+      }
     }
-    set.add(nums[i]);
   }
-  if (flag) {
-    return max - min < 5;
-  }
-  return false;
+  return result;
 }
-console.log(isStraight([1, 2, 3, 4, 5]));
+console.log(twoSum([1, 2, 3, 4, 5], 5));
