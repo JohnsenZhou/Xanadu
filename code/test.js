@@ -1,17 +1,21 @@
-function multiple(num1, num2) {
-  let num1Str = `${num1}`;
-  let num2Str = `${num2}`;
-  let resultArr = [];
-  for (let i = num1Str.length - 1; i >= 0; i--) {
-    for (let j = num2Str.length - 1; j >= 0; j--) {
-      let index1 = i + j;
-      let index2 = i + j + 1;
-      let mul = num1Str[i] * num2Str[j] + (resultArr[index2] || 0);
-      resultArr[index1] = Math.floor(mul / 10) + (resultArr[index1] || 0);
-      resultArr[index2] = mul % 10;
+function isStraight(nums) {
+  let flag = true;
+  let set = new Set();
+  let min = 14;
+  let max = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] === 0) continue;
+    max = nums[i] > max ? nums[i] : max;
+    min = nums[i] < min ? nums[i] : min;
+    if (set.has(nums[i])) {
+      flag = false;
+      break;
     }
+    set.add(nums[i]);
   }
-  let result = resultArr.join("").replace(/^0+/, "");
-  return result;
+  if (flag) {
+    return max - min < 5;
+  }
+  return false;
 }
-console.log(multiple(1000000300, 1000000000));
+console.log(isStraight([1, 2, 3, 4, 5]));
