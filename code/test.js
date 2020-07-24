@@ -1,18 +1,32 @@
-function triangleNumber(nums = []) {
-  let result = 0;
-  let len = nums.length;
-  for (let i = 0; i < len; i++) {
-    for (let j = 0; j < len; j++) {
-      for (let k = 0; k < len; k++) {
-        if (
-          nums[i] + nums[j] > nums[k] &&
-          nums[i] + nums[k] > nums[j] &&
-          nums[k] + nums[j] > nums[i]
-        ) {
-          result += 1;
-        }
+let imgs = document.getElementsByTagName("img");
+let len = imgs.length;
+
+const lazyLoad = (function() {
+  let count = 0;
+  return function() {
+    const clientHeight = window.innerHeight;
+    for (let i = count; i < len; i++) {
+      const rect = imgs[i].getBoundingClientRect();
+      if (rect.top < clientHeight) {
+        imgs[i].src = imgs[i]["data-src"];
       }
+      count = i + 1;
     }
+  };
+})();
+
+window.onscroll = lazyLoad;
+
+function lazyLoad() {
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(item => {
+      if (item.intersectionRatio > 0) {
+        item.target.src = item.target["data-src"];
+        io.unobserve(item.target);
+      }
+    });
+  });
+  for (let i = 0; i < len; i++) {
+    io.observe(imgs[i]);
   }
-  return result;
 }
