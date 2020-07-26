@@ -1,21 +1,20 @@
-function run(genFn) {
-  return new Promise((resolve, reject) => {
-    const gen = genFn();
-    function step(nextFn) {
-      let next;
-      try {
-        next = nextFn();
-      } catch (error) {
-        reject(error);
-      }
-      if (next.done) {
-        resolve(next.value);
-      }
-      Promise.resolve(next.value).then(
-        res => step(() => gen.next(res)),
-        err => gen.throw(new Error(err))
-      );
-    }
-    step(() => gen.next(undefined));
-  });
+// 递归
+function sum(num) {
+  if (num <= 2) return num;
+  return sum(num - 1) + sum(num - 2);
 }
+
+// 动态规划
+function sum(num) {
+  if (num <= 2) return num;
+  let a = 1;
+  let b = 2;
+  let temp = 0;
+  for (let i = 3; i < num; i++) {
+    temp = a + b;
+    a = b;
+    b = temp;
+  }
+  return temp;
+}
+console.log(sum(100));
