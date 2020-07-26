@@ -1,32 +1,21 @@
-let imgs = document.getElementsByTagName("img");
-let len = imgs.length;
-
-const lazyLoad = (function() {
-  let count = 0;
-  return function() {
-    const clientHeight = window.innerHeight;
-    for (let i = count; i < len; i++) {
-      const rect = imgs[i].getBoundingClientRect();
-      if (rect.top < clientHeight) {
-        imgs[i].src = imgs[i]["data-src"];
+function run(genFn) {
+  return new Promise((resolve, reject) => {
+    const gen = genFn();
+    function step(nextFn) {
+      let next;
+      try {
+        next = nextFn();
+      } catch (error) {
+        reject(error);
       }
-      count = i + 1;
+      if (next.done) {
+        resolve(next.value);
+      }
+      Promise.resolve(next.value).then(
+        res => step(() => gen.next(res)),
+        err => gen.throw(new Error(err))
+      );
     }
-  };
-})();
-
-window.onscroll = lazyLoad;
-
-function lazyLoad() {
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(item => {
-      if (item.intersectionRatio > 0) {
-        item.target.src = item.target["data-src"];
-        io.unobserve(item.target);
-      }
-    });
+    step(() => gen.next(undefined));
   });
-  for (let i = 0; i < len; i++) {
-    io.observe(imgs[i]);
-  }
 }
