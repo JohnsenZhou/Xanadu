@@ -1,20 +1,22 @@
-// 递归
-function sum(num) {
-  if (num <= 2) return num;
-  return sum(num - 1) + sum(num - 2);
-}
-
-// 动态规划
-function sum(num) {
-  if (num <= 2) return num;
-  let a = 1;
-  let b = 2;
-  let temp = 0;
-  for (let i = 3; i < num; i++) {
-    temp = a + b;
-    a = b;
-    b = temp;
+const arr = [
+  [0, 0, 0],
+  [0, 1, 0],
+  [0, 0, 0]
+];
+function getNums(arr) {
+  function loop(m, n) {
+    if (arr[0][0] === 1 || arr[m - 1][n - 1] === 1) return 0;
+    if (m < 2) {
+      return arr[m - 1].includes(1) ? 0 : 1;
+    }
+    if (n < 2) {
+      if (arr.some(item => item[0] === 1)) {
+        return 0;
+      }
+      return 1;
+    }
+    return loop(m, n - 1) + loop(m - 1, n);
   }
-  return temp;
+  return loop(arr.length, arr[0].length);
 }
-console.log(sum(100));
+console.log(getNums(arr));
