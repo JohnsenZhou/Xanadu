@@ -1,22 +1,37 @@
-const arr = [
-  [0, 0, 0],
-  [0, 1, 0],
-  [0, 0, 0]
-];
-function getNums(arr) {
-  function loop(m, n) {
-    if (arr[0][0] === 1 || arr[m - 1][n - 1] === 1) return 0;
-    if (m < 2) {
-      return arr[m - 1].includes(1) ? 0 : 1;
-    }
-    if (n < 2) {
-      if (arr.some(item => item[0] === 1)) {
-        return 0;
+const arr = [1, 2, 3, 3, 4, 5, 5];
+function slice(arr = []) {
+  let historyMap = {};
+  let valueMap = {};
+  let valueKey = 1;
+  let temp;
+  function loop(arr = [], valueKey) {
+    if (Object.keys(historyMap).length === arr.length) return;
+    for (let i = 0; i < arr.length; i++) {
+      debugger;
+      if (historyMap[i]) continue;
+      if (temp) {
+        if (arr[i] - temp === 0 && i < arr.length - 1) continue;
+        if (arr[i] - temp === 1) {
+          temp = arr[i];
+          historyMap[i] = 1;
+          valueMap[valueKey] = valueMap[valueKey] + 1;
+        }
+        if (
+          i === arr.length - 1 &&
+          Object.keys(historyMap).length < arr.length
+        ) {
+          temp = null;
+          valueKey++;
+          loop(arr, valueKey);
+        }
+      } else {
+        temp = arr[i];
+        historyMap[i] = 1;
+        valueMap[valueKey] = valueMap[valueKey] ? valueMap[valueKey] + 1 : 1;
       }
-      return 1;
     }
-    return loop(m, n - 1) + loop(m - 1, n);
   }
-  return loop(arr.length, arr[0].length);
+  loop(arr, valueKey);
+  return Object.keys(valueMap).every(key => valueMap[key] > 2);
 }
-console.log(getNums(arr));
+console.log(slice(arr));
