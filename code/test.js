@@ -1,4 +1,4 @@
-function restoreIpAddresses(str = '') {
-  const result = []
-  if (str.length < 4 || str.length > 12) return []
+function restoreIpAddresses(str = "") {
+  let result = [];
+  if (str.length < 4 || str.length > 12) return result;
 }
